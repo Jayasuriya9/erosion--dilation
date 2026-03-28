@@ -1,123 +1,81 @@
-# Exp-9-Implementation-of-Erosion-and-Dilation
+## Implementation-of-Erosion-and-Dilation
 ## Aim
 To implement Erosion and Dilation using Python and OpenCV.
 ## Software Required
 1. Anaconda - Python 3.7
 2. OpenCV
 ## Algorithm:
-### Step 1:
 
-Import necessary libraries, including OpenCV (cv2) and Matplotlib (plt), to load, manipulate, and display images.
-### Step 2:
+### Step1:
+<br> import the neccesary packages
 
-Use cv2.putText() to add text to the image at a specific location with chosen font, size, color, and thickness.
-### Step 3:
 
-Define a structuring element using cv2.getStructuringElement() to specify the shape and size for morphological transformations.
-### Step 4:
+### Step2:
+<br> creat the text using cv2.put Text
 
-Apply erosion to the image using cv2.erode() with the structuring element to shrink white regions and reduce noise.
-### Step 5:
+### Step3:
+<br> create the structuting element
 
-Dilate the eroded image using cv2.dilate() with the structuring element to expand white regions and enhance features.
-### Step 6:
+### Step4:
+<br>  Erodde the image
 
-Display the original and processed images using plt.imshow() with proper axis configuration and titles for comparison.
-### Step 7:
+### Step5:
+<br> Dilate the image
 
-Finalize by calling plt.show() to display all images in a single figure for easy visualization and comparison.
-
-## REG NO: 212223230088
-## NAME : J JAYASURIYA
+ 
 ## Program:
-### Import the necessary packages
-```
+
+``` Python
 import cv2
 import numpy as np
-import matplotlib.pyplot as plt
-image = np.zeros((500, 500, 3), dtype="uint8")
+from matplotlib import pyplot as plt
+imput_image='actor.jpg'
+color_image=cv2.imread(imput_image)
+gray_image=cv2.cvtColor(color_image,cv2.COLOR_BGR2GRAY)
+edges=cv2.Canny(gray_image,100,200)
+kernel_size=5
+kernel=np.ones((kernel_size,kernel_size),np.uint8)
+erosion=cv2.erode(edges,kernel,iterations=1)
+dilation=cv2.dilate(edges,kernel,iterations=1)
+plt.figure(figsize=(15,10))
+plt.subplot(2,3,1)
+plt.imshow(cv2.cvtColor(color_image,cv2.COLOR_BGR2RGB))
+plt.title('Original Color Image')
+plt.axis('on')
+plt.subplot(2,3,2)
+plt.imshow(gray_image,cmap='gray')
+plt.title('black and white image')
+plt.axis('on')
+plt.subplot(2,3,3)
+plt.imshow(edges,cmap='gray')
+plt.title('edge segmentation')
+plt.axis('on')
+plt.subplot(2,3,4)
+plt.imshow(edges,cmap='gray')
+plt.title('erosion')
+plt.axis('on')
+plt.subplot(2,3,5)
+plt.imshow(edges,cmap='gray')
+plt.title('dilation')
+plt.axis('on')
+
+
+
+
 ```
-
-
-### Create the Text using cv2.putText
-```
-text = "NITHISH"
-font = cv2.FONT_HERSHEY_SIMPLEX
-cv2.putText(image, text, (50, 150), font, 2, (255, 255, 255), 3)
-```
-
-### Create the structuring element
-
-```
-kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
-
-```
-
-
-### Original image
-```
-
-image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-plt.imshow(image_rgb)
-plt.title("Original Image")
-plt.axis("off")
-```
-
-### Erode the image
-```
-eroded_image = cv2.erode(image, kernel, iterations=1)
-eroded_image_rgb = cv2.cvtColor(eroded_image, cv2.COLOR_BGR2RGB)
-plt.imshow(eroded_image_rgb)
-plt.title("Eroded Image")
-plt.axis("off")
-```
-
-
-
-### Dilate the image
-```
-dilated_image = cv2.dilate(image, kernel, iterations=1)
-dilated_image_rgb = cv2.cvtColor(dilated_image, cv2.COLOR_BGR2RGB)
-plt.imshow(dilated_image_rgb)
-plt.title("Dilated Image")
-plt.axis("off")
-```
-
-
 ## Output:
 
-### Display the input Image
-<br>
-<br>
-<br>
-<img width="483" height="467" alt="image" src="https://github.com/user-attachments/assets/c819989b-8c23-45ce-9dd3-dec6357f1d18" />
+![image](https://github.com/user-attachments/assets/8772c861-b391-46ad-86ac-3e72fcde051d)
 
+![image](https://github.com/user-attachments/assets/edf823ad-7f50-4af6-86b3-57e4a141e748)
 
-<br>
-<br>
-<br>
+![image](https://github.com/user-attachments/assets/8b564fad-11e0-45a4-804a-3e97d3741c3a)
 
-### Display the Eroded Image
-<br>
-<br>
-<img width="451" height="459" alt="image" src="https://github.com/user-attachments/assets/fd0169c5-1ae5-42c0-bfdf-07a56b41567b" />
+![image](https://github.com/user-attachments/assets/bdaddde5-bd00-453d-8509-d00b641e3d83)
 
+![image](https://github.com/user-attachments/assets/45de9ba2-2318-4ba4-bd4d-111b83857945)
 
-<br>
-<br>
-<br>
-
-### Display the Dilated Image
-<br>
-<br>
-<br>
-<img width="444" height="462" alt="image" src="https://github.com/user-attachments/assets/05274e26-6737-40f4-bca6-e95adda1ea1b" />
-
-
-
-<br>
-<br>
-<br>
 
 ## Result
 Thus the generated text image is eroded and dilated using python and OpenCV.
+
